@@ -2,32 +2,26 @@
 
 import axios from "axios";
 import { Header } from "@/components/ui/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { setUser } from "@/redux/slices/userSlice"; // Ajusta la ruta si es necesario
 import { Bounce, toast } from "react-toastify";
 
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
 export const Login = () => {
-    // const { data: session } = useSession()
 
-/*     if (session) redirect("/");
 
-    const handleSocialLogin = async (
-        provider
-    ) => {
-        try {
-            const res = await signIn(provider, {
-                callbackUrl: "/",
-                redirect: false,
-            });
 
-            if (res?.error) {
-                console.error("Social login error:", res.error);
-            }
-        } catch (error) {
-            console.error(`${provider} login error:`, error);
-        }
-    }; */
+    const handleSocialLogin = (provider) => {
+        window.location.href = `${API_URL}/api/auth/${provider}`;
+    };
+
+
+
+
+
 
     return (
         <>
@@ -42,7 +36,7 @@ export const Login = () => {
                     <div className='flex flex-col gap-4'>
                         {/* Google Button */}
                         <button
-                            // onClick={() => handleSocialLogin("google")}
+                            onClick={() => handleSocialLogin("google")}
                             className='w-full flex items-center justify-center gap-3 p-4 bg-white/10 hover:bg-[#16a084]/20 backdrop-blur-md border border-white/20 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#16a084]/20 group'>
                             <svg className='w-5 h-5' viewBox='0 0 24 24'>
                                 <path
@@ -69,7 +63,7 @@ export const Login = () => {
 
                         {/* Facebook Button */}
                         <button
-                            // onClick={() => handleSocialLogin("facebook")}
+                            onClick={() => handleSocialLogin("facebook")}
                             className='w-full flex items-center justify-center gap-3 p-4 bg-white/10 hover:bg-[#16a084]/20 backdrop-blur-md border border-white/20 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#16a084]/20 group'>
                             <svg className='w-5 h-5' viewBox='0 0 24 24' fill='#1877F2'>
                                 <path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' />
@@ -81,7 +75,7 @@ export const Login = () => {
 
                         {/* GitHub Button */}
                         <button
-                            // onClick={() => handleSocialLogin("github")}
+                            onClick={() => handleSocialLogin("github")}
                             className='w-full flex items-center justify-center gap-3 p-4 bg-white/10 hover:bg-[#16a084]/20 backdrop-blur-md border border-white/20 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#16a084]/20 group'>
                             {/* <Github className='w-5 h-5 text-white' /> */}
                             <span className='text-white font-medium'>
@@ -107,19 +101,13 @@ export const Login = () => {
                             className='w-full p-4 bg-white/10 border border-white/20 rounded-xl outline-none text-white placeholder-gray-400 focus:border-[#16a084] transition-colors'
                         />
 
-                        <button className='w-full p-4 bg-[#16a084]/20  w- border border-white/20  hover:bg-[#16a084]/50 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl'>
+                        <button 
+                        onClick={() => handleSocialLogin("login")}
+                        className='w-full p-4 bg-[#16a084]/20  w- border border-white/20  hover:bg-[#16a084]/50 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl'>
                             Sign In
                         </button>
                     </div>
 
-                    <div className='text-center mt-6'>
-                        <p className='text-gray-400 text-sm'>
-                            Dont have an account?{" "}
-                            <a href='#' className='text-[#16a084] hover:underline'>
-                                Sign up
-                            </a>
-                        </p>
-                    </div>
                 </div>
             </div>
         </>
