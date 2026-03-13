@@ -1,26 +1,20 @@
 // import Image from "next/image";
 "use client"
 
-import { Footer } from "@/components/Footer/Footer";
-import { Header } from "@/components/Header/Header";
-import { ImageCard } from "@/components/ImageCard/ImageCard";
+import { Footer } from "@/components/ui/Footer";
+import { Header } from "@/components/ui/Header";
+import { ImageCard } from "@/components/ui/ImageCard";
 import { useFetchImages } from "@/hooks/useFetchImages";
 
-// import PhotoCard from "@components/PhotoCard/PhotoCard";
-// import { useFetchImages } from "@hooks/useFetchImages";
-
 export default function Home() {
-  // const { data, loading, error } = useFetchImages();
+
   const { data, error } = useFetchImages()
 
   return (
     <>
       <Header />
-      {/* {loading && <div className="text-center text-4xl">Loading...</div>}
-            {error && <div className="bg-red-500 w-2/3">Error: {error.message}</div>} */}
-
-      <section className="flex flex-col items-center mx-auto relative">
-        <main className="w-4/5 column-1 sm:columns-2 md:columns-3 lg:columns-4">
+      <section className="flex flex-col items-center my-10 mx-auto relative">
+        <main className="w-4/5 column-1 sm:columns-2 md:columns-3 lg:columns-4 ">
           {data && data.map((image) => (
             <ImageCard
               key={image.id}
@@ -29,8 +23,8 @@ export default function Home() {
           ))}
         </main>
 
-        <div className='m-4 w-[90%] sm:w-[80%] md:w-[70%] flex flex-col gap-5 relative z-10'>
-          <h3 className='font-bold text-xl sm:text-2xl'>
+        <div className='m-4 w-4/5 flex flex-col gap-5 relative z-10 text-white'>
+          <h3 className='font-bold text-xl sm:text-2xl '>
             Imágenes gratuitas que puedes buscar en Esfrar
           </h3>
           <p className='text-sm sm:text-base'>
@@ -40,7 +34,7 @@ export default function Home() {
           </p>
           <a
             href='#'
-            className='text-center w-[80%] sm:w-[60%] md:w-[15%] lg:w-[30%] p-3 bg-blue-600 text-white rounded-xl'>
+            className='text-center w-[80%] sm:w-[60%] md:w-[15%] lg:w-[30%] p-3 border border-blue-600 hover:bg-blue-600/40 text-white rounded-xl'>
             Conozca más sobre nuestra licencia
           </a>
         </div>
