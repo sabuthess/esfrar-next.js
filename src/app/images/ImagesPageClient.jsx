@@ -2,9 +2,9 @@
 
 import { useSearchParams } from "next/navigation"
 import useFetchImagesSearch from "@/hooks/useFetchImagesSearch"
-import { Header } from "@/components/Header/Header"
-import { Footer } from "@/components/Footer/Footer"
-import { ImageCard } from "@/components/ImageCard/ImageCard"
+import { Header } from "@/components/ui/Header"
+import { Footer } from "@/components/ui/Footer"
+import { ImageCard } from "@/components/ui/ImageCard"
 import { useState } from "react"
 
 export default function ImagesPageClient() {

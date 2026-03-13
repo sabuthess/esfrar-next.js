@@ -1,17 +1,15 @@
 "use client"
 
-import { Footer } from "@/components/Footer/Footer";
-import { Header } from "@/components/Header/Header";
-
-import useFetchSingleImage from "@/hooks/useFetchSingleImage";
+import { Footer } from "@/components/ui/Footer";
+import { Header } from "@/components/ui/Header";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { AsideImageInfo } from "./_components/AsideImageInfo/AsideImageInfo";
-import { useFetchUserById } from "@/hooks/useFindUserById";
 import { useAsync } from "@/hooks/useAsync";
 import { useState } from "react";
 import { useFetchAndLoad } from "@/hooks/useFetchAndLoad";
 import { getImageById } from "@/services/public.services";
+import { useFetchUserById } from "@/hooks/useFindUserById";
 
 
 export default function ImagePage() {
@@ -43,15 +41,15 @@ export default function ImagePage() {
                 loading ? <div className="h-screen flex items-center">
                     <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
 
-                </div> : <main className='my-20 w-11/12 mx-auto flex flex-col lg:flex-row justify-evenly lg:justify-around items-center gap-10 flex-wrap'>
-                    <div className='w-[60%] h-[500px]'>
+                </div> : <main className='my-20 w-4/5 h-[700px] mx-auto flex flex-col lg:flex-row justify-evenly lg:justify-around items-center gap-10 flex-wrap'>
+                    <div className='w-3/5 h-full mx-auto flex justify-center'>
 
                         <Image
                             src={image?.file_path}
                             alt={image?.title}
                             width={400}
                             height={400}
-                            className="rounded-2xl w-full h-full lg:object-contain object-cover"
+                            className="rounded-2xl object-contain"
                         />
 
 
@@ -67,38 +65,6 @@ export default function ImagePage() {
                 </main>
             }
 
-
-            {/* {loading ? (
-                <div className="bg-neutral-50 w-full h-full flex justify-center items-center">
-                    <span>Cargando...</span>
-                </div>
-            ) :
-                data ? (
-                    <main className='my-20 w-11/12 mx-auto flex flex-col lg:flex-row justify-evenly lg:justify-around items-center gap-10 flex-wrap'>
-                        <div className='w-[60%] h-[500px]'>
-
-                            {loading ? <div className="bg-neutral-50 w-full h-full flex justify-center items-center">
-                                <span>Cargando...</span> 
-                            </div> : data && data ? (
-                                <Image
-                                    src={data.file_path}
-                                    alt={data.title}
-                                    width={400}
-                                    height={400}
-                                    className="rounded-2xl w-full h-full lg:object-contain object-cover"
-                                />
-                            ) : (
-                                <div className="bg-neutral-200 p-2.5"></div>
-                            )}
-
-                        </div>
-
-                        <AsideImageInfo user_id={userId} user_name={userFound.first_name} last_name={userFound.last_name} image_id={image_id} image_url={data.url} image_title={data.title} />
-
-                    </main>
-                ) : (
-                    <div className="bg-neutral-200 p-2.5">No hay imagen disponible</div>
-                )} */}
             <Footer />
         </>
     )
