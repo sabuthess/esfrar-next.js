@@ -1,29 +1,18 @@
 "use client";
 
-import { Header } from "@/components/Header/Header";
+import { Header } from "@/components/ui/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Bounce, toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { useAuth } from "@/context/AuthContext";
+
 
 export default function UploadImage() {
-    const { token } = useAuth();
-    const user = useSelector((state) => state.user.user);
-    const router = useRouter();
-
-    useEffect(() => {
-        if (!token) {
-            toast.error("Token no encontrado. Por favor inicia sesión nuevamente.");
-            router.push("/login");
-            return;
-        }
-    }, [token, router]);
 
     const [inputValue, setInputValue] = useState({
         title: "",
         location: "",
+        description: ""
     });
 
     const handleOnChangeInput = (e) => {
@@ -47,12 +36,15 @@ export default function UploadImage() {
             setImage(file);
         }
     };
-
     const handleOnClick = () => {
-        if (tag.title.trim() !== "" && tags.length < 3) {
-            setTags([...tags, tag.title]);
-            setTag({ title: "" });
+
+        if (tags.length >= 5) {
+            toast.info("Ya no se pueden agregar más tags");
+            return;
         }
+
+        setTags([...tags, tag.title]);
+        setTag({ title: "" });
     };
 
     const handleChangeInputTags = (event) => {
@@ -66,8 +58,9 @@ export default function UploadImage() {
         }
 
         const formData = new FormData();
-        formData.append("file", imageFile); // Confirma que backend espere "file"
+        formData.append("file", imageFile);
         formData.append("title", inputValue.title);
+        formData.append("description", inputValue.description);
         formData.append("user_id", user?.id);
         formData.append("tags", JSON.stringify(tags));
         formData.append("location", inputValue.location);
@@ -79,7 +72,6 @@ export default function UploadImage() {
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        // No fijar Content-Type, axios lo maneja
                     },
                 }
             );
@@ -95,7 +87,6 @@ export default function UploadImage() {
                 transition: Bounce,
             });
 
-            // Reset estados solo tras éxito
             setImage(null);
             setInputValue({
                 title: "",
@@ -133,40 +124,50 @@ export default function UploadImage() {
     return (
         <>
             <Header />
+
+
             <main className="w-full my-14">
                 <form
-                    className="w-full md:w-[60%]  mx-auto p-10 bg-neutral-50 border border-neutral-200 rounded-4xl"
+                    className="bg-white/10 w-[60%] mx-auto p-10 border rounded-4xl"
                     method="post"
                     onSubmit={handleOnSubmit}
                 >
                     <div className="flex flex-col md:flex-row justify-between gap-20">
-                        <div className="flex flex-col justify-center items-center ">
+
+                        {/* COLUMNA IZQUIERDA */}
+                        <div className="flex flex-col items-center w-full md:w-[420px]">
+
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={handleImageChange}
                                 required
-                                className="border text-center border-dashed border-white text-white p-4 bg-neutral-700 cursor-pointer"
+                                className="border text-center border-dashed border-white text-white cursor-pointer p-4 w-full"
                             />
+
                             {isClient && image && typeof image === "object" && (
-                                <div className="mt-4 h-full">
-                                    <p className="text-lg mb-2">Vista previa:</p>
-                                    <img
-                                        src={URL.createObjectURL(image)}
-                                        alt="Vista previa"
-                                        className="max-w-full max-h-64 border border-gray-300 rounded"
-                                    />
+                                <div className="mt-6 w-full flex flex-col items-center gap-2">
+                                    <p className="text-lg text-white">Vista previa:</p>
+
+                                    <div className="w-[400px] h-[300px] rounded-lg flex items-center justify-center overflow-hidden">
+                                        <img
+                                            src={URL.createObjectURL(image)}
+                                            alt="Vista previa"
+                                            className="w-full h-full object-contain"
+                                        />
+                                    </div>
                                 </div>
                             )}
                         </div>
 
-                        <div className="flex flex-col gap-6 w-[90%] ">
-                            <div className="flex flex-col gap-1 w-full md:w-auto">
-                                <label htmlFor="title" className="font-bold">
+                        <div className="flex flex-col gap-6 flex-1">
+
+                            <div className="flex flex-col gap-1">
+                                <label htmlFor="title" className="font-bold text-white">
                                     Titulo
                                 </label>
                                 <input
-                                    className="outline-none p-1.5 rounded-md border border-neutral-400"
+                                    className="outline-none p-1.5 rounded-md border bg-teal-400/10 text-white"
                                     type="text"
                                     placeholder="Enter title"
                                     id="title"
@@ -177,47 +178,50 @@ export default function UploadImage() {
                                 />
                             </div>
 
-                            <div className="flex flex-col gap-3 w-full md:w-auto">
-                                <label htmlFor="tags" className="font-bold">
+                            <div className="flex flex-col gap-3">
+                                <label htmlFor="tags" className="font-bold text-white">
                                     Etiquetas
                                 </label>
+
                                 <input
                                     value={tag.title}
                                     onChange={handleChangeInputTags}
-                                    className="outline-none p-1.5 rounded-md border border-neutral-400"
+                                    className="outline-none p-1.5 rounded-md border bg-teal-400/10 text-white"
                                     type="text"
                                     placeholder="Enter tags"
                                     id="tags"
                                 />
-                                <div className="flex justify-between">
-                                    <div className="flex gap-3 items-center">
-                                        {tags.length <= 3
-                                            ? tags.map((e, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="bg-neutral-200 w-auto p-1 rounded-md text-black text-center"
-                                                >
-                                                    {e}
-                                                </div>
-                                            ))
-                                            : ""}
+
+                                <div className="flex justify-between items-center">
+
+                                    <div className="flex gap-3 items-center flex-wrap">
+                                        {tags.map((e, index) => (
+                                            <div
+                                                key={index}
+                                                className="bg-neutral-100/10 px-2 py-1 rounded-md text-white text-center"
+                                            >
+                                                {e}
+                                            </div>
+                                        ))}
                                     </div>
+
                                     <button
                                         type="button"
-                                        className="text-blue-700 cursor-pointer"
+                                        className="text-teal-100 cursor-pointer"
                                         onClick={handleOnClick}
                                     >
                                         Agregar
                                     </button>
+
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-1 w-full md:w-auto">
-                                <label htmlFor="location" className="font-bold ">
+                            <div className="flex flex-col gap-1">
+                                <label htmlFor="location" className="font-bold text-white">
                                     Ubicación
                                 </label>
                                 <input
-                                    className="outline-none p-1.5 rounded-md border border-neutral-400"
+                                    className="outline-none p-1.5 rounded-md border bg-teal-400/10 text-white"
                                     type="text"
                                     placeholder="Enter location"
                                     id="location"
@@ -227,14 +231,31 @@ export default function UploadImage() {
                                     required
                                 />
                             </div>
-                            <div className="flex justify-center  ">
+
+                            <div className="flex flex-col gap-1">
+                                <label htmlFor="description" className="font-bold text-white">
+                                    Descripción
+                                </label>
+                                <textarea
+                                    className="outline-none p-2 rounded-md border bg-teal-400/10 text-white min-h-[120px]"
+                                    placeholder="Escribe aquí tu descripción"
+                                    id="description"
+                                    onChange={handleOnChangeInput}
+                                    value={inputValue.description}
+                                    name="description"
+                                    required
+                                />
+                            </div>
+
+                            <div className="flex justify-center">
                                 <button
                                     type="submit"
-                                    className="w-full  md:w-[50%] text-white bg-blue-600 p-2 rounded-3xl cursor-pointer"
+                                    className="w-full md:w-[50%] text-white border border-blue-500 hover:bg-blue-600 p-2 rounded-3xl cursor-pointer transition"
                                 >
                                     Subir Imagen
                                 </button>
                             </div>
+
                         </div>
                     </div>
                 </form>
