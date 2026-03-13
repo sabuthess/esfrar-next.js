@@ -1,8 +1,9 @@
 // import AnimatedMeshGradient from "@/components/AnimatedMeshGradient/AnimatedMeshGradient";
 // "use-cliente"
-import { Footer } from "@/components/Footer/Footer";
-import { Header } from "@/components/Header/Header";
+import { Footer } from "@/components/ui/Footer";
+import { Header } from "@/components/ui/Header";
 import Image from "next/image";
+import Link from "next/link";
 
 
 const imagesIntegrants = [
@@ -19,15 +20,11 @@ export default function About() {
             {/* <AnimatedMeshGradient /> */}
 
             <main className=" max-w-7xl mx-auto flex flex-col mt-20  items-center lg:items-start  gap-20">
-
-
-
-
-                <div className="relative w-full bg-white overflow-hidden">
+                <div className="relative w-full overflow-hidden">
                     <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
                         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
                             <div className="sm:max-w-lg">
-                                <h1 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
+                                <h1 className="text-4xl font font-extrabold tracking-tight text-gray-200 sm:text-6xl">
                                     Portafolio digital online
                                 </h1>
                                 <p className="mt-4 text-xl text-gray-500">
@@ -102,33 +99,33 @@ export default function About() {
                                         </div>
                                     </div>
 
-                                    <a
-                                        href="#"
-                                        className="inline-block text-center bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700"
+                                    <Link
+                                        href="/"
+                                        className="inline-block text-center border border-blue-600 bg-blue-600/40 rounded-md py-3 px-8 font-medium text-white "
                                     >
-                                        View Gal
-                                    </a>
+                                        View more
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <section className="flex flex-col gap-5 w-[60%]">
+                <section className="flex flex-col gap-5 w-[60%] text-white">
 
                     <h2 className="text-4xl font-bold">Nuestra misión</h2>
-                    <p className="font-medium leading-relaxed text-neutral-600">Nuestro objetivo es ofrecer una plataforma fácil de usar, con recursos visuales variados y de alta resolución, que ayude a dar vida a tus ideas de manera sencilla y efectiva.</p>
+                    <p className="font-medium leading-relaxed  text-gray-500">Nuestro objetivo es ofrecer una plataforma fácil de usar, con recursos visuales variados y de alta resolución, que ayude a dar vida a tus ideas de manera sencilla y efectiva.</p>
 
-                    <p className="font-medium leading-relaxed text-neutral-600">Sabemos lo difícil que puede ser encontrar imágenes de alta calidad y libres de derechos para tus proyectos.</p>
+                    <p className="font-medium leading-relaxed  text-gray-500">Sabemos lo difícil que puede ser encontrar imágenes de alta calidad y libres de derechos para tus proyectos.</p>
 
-                    <p className="font-medium leading-relaxed text-neutral-600">Esfrar no es solo una plataforma, es una fuerza pionera tanto en el mundo digital como en el físico. Nuestro compromiso va más allá de crear una galeria: se trata de construir puentes entre creadores, desarrolladores y usuarios, facilitando una nueva forma de conectarse enriquecida con oportunidades, empoderamiento y participación. A través de aplicaciones innovadoras de la tecnología web, estamos estableciendo nuevos puntos de referencia para la propiedad digital, la creatividad y la gobernanza impulsada por la comunidad.</p>
+                    <p className="font-medium leading-relaxed text-gray-500 ">Esfrar no es solo una plataforma, es una fuerza pionera tanto en el mundo digital como en el físico. Nuestro compromiso va más allá de crear una galeria: se trata de construir puentes entre creadores, desarrolladores y usuarios, facilitando una nueva forma de conectarse enriquecida con oportunidades, empoderamiento y participación. A través de aplicaciones innovadoras de la tecnología web, estamos estableciendo nuevos puntos de referencia para la propiedad digital, la creatividad y la gobernanza impulsada por la comunidad.</p>
 
-                    <p className="font-medium leading-relaxed text-neutral-600">A medida que avanzamos en este ambicioso viaje, nuestra misión es servir como centro de innovación tecnológica, colaboración comunitaria y enriquecimiento educativo. Visualizamos a Esfrar como la piedra angular de un ecosistema vibrante donde se aproveche al máximo el potencial sin explotar de la cadena de bloques, marcando el comienzo de una nueva era de interacción digital que sea asequible, inclusiva y de profundo impacto.</p>
+                    <p className="font-medium leading-relaxed  text-gray-500">A medida que avanzamos en este ambicioso viaje, nuestra misión es servir como centro de innovación tecnológica, colaboración comunitaria y enriquecimiento educativo. Visualizamos a Esfrar como la piedra angular de un ecosistema vibrante donde se aproveche al máximo el potencial sin explotar de la cadena de bloques, marcando el comienzo de una nueva era de interacción digital que sea asequible, inclusiva y de profundo impacto.</p>
                 </section>
 
                 <section className=" text-center lg:text-start flex flex-col items-center lg:items-start mx-auto lg:mx-0 m-3" id="team">
                     <h2 className="text-4xl font-bold">Nuestro equipo</h2>
-                    <p className="font-medium leading-relaxed text-neutral-600">
+                    <p className="font-medium leading-relaxed text-teal-600">
                         Conozca a los miembros de nuestro equipo.</p>
                     <div className="flex gap-10 lg:gap-20 justify-center m-4 flex-wrap ">
 
