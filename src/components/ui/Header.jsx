@@ -6,7 +6,7 @@ import Link from "next/link";
 import { BarsIcon } from "../icons/BarsIcon";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Login } from "@/components/Login"
+import { Login } from "@/components/ui/Login"
 
 
 export const Header = () => {
