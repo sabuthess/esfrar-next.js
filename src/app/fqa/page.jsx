@@ -1,8 +1,8 @@
 
 
-import { Footer } from "@/components/Footer/Footer"
-import { Header } from "@/components/Header/Header"
-import { SingleQuestion } from "@/components/SingleQuestio/SingleQuestio"
+import { Footer } from "@/components/ui/Footer"
+import { Header } from "@/components/ui/Header"
+import { SingleQuestion } from "@/components/ui/SingleQuestio"
 
 const data = [
     {

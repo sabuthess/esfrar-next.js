@@ -1,6 +1,6 @@
 "use client"
 
-import { ImageCard } from '@/components/ImageCard/ImageCard';
+import { ImageCard } from '@/components/ui/ImageCard';
 import { useAuth } from '@/context/AuthContext';
 import { Dialog, DialogBackdrop, Menu, MenuButton, MenuItems, Transition } from '@headlessui/react';
 import {
@@ -14,7 +14,7 @@ import {
 import Image from 'next/image';
 import { Fragment, useState } from "react";
 import { useSelector } from 'react-redux';
-import { ModalImage } from '@/components/ModalImage/ModalImage'
+import { ModalImage } from '@/components/ui/ModalImage'
 import { useRouter } from 'next/navigation';
 import { useImagesLikesUser } from '@/hooks/useImagesLikesUser';
 import Link from 'next/link';

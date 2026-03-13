@@ -1,6 +1,6 @@
 "use client"
 
-import { ImageCard } from '@/components/ImageCard/ImageCard';
+import { ImageCard } from '@/components/ui/ImageCard';
 import { useAuth } from '@/context/AuthContext';
 import { Dialog, DialogBackdrop, Menu, MenuButton, MenuItems, Transition } from '@headlessui/react';
 import {
@@ -16,7 +16,7 @@ import { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios"
 import { Bounce, toast } from "react-toastify"
-import { ModalImage } from '@/components/ModalImage/ModalImage'
+import { ModalImage } from '@/components/ui/ModalImage'
 import { useRouter } from 'next/navigation';
 import { logout } from "@/redux/slices/userSlice";
 import Link from 'next/link';

@@ -1,8 +1,8 @@
 "use client"
 
-import { Footer } from "@/components/Footer/Footer"
-import { Header } from "@/components/Header/Header"
-import { ImageCard } from "@/components/ImageCard/ImageCard"
+import { Footer } from "@/components/ui/Footer"
+import { Header } from "@/components/ui/Header"
+import { ImageCard } from "@/components/ui/ImageCard"
 import useFetchImagesByUser from "@/hooks/useFetchImagesByUser"
 import { useFetchUserById } from "@/hooks/useFindUserById"
 import Link from "next/link"
