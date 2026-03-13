@@ -83,7 +83,7 @@ export const Header = () => {
                         >
                             <div className="flex flex-col lg:flex lg:flex-row justify-center items-center gap-3 text-center">
                                     <button
-                                        className="py-2 px-5 rounded-2xl cursor-pointer lg:hover:bg-neutral-800 text-white "
+                                        className="py-2 px-5 rounded-2xl cursor-pointer lg:hover:bg-neutral-600/40 text-white "
                                         onClick={() => setIsModalLoginActive(!isModalLoginActive)}
                                     >
                                         Iniciar Sesión
@@ -91,7 +91,7 @@ export const Header = () => {
                                 {/* <Link href={`/login`}></Link> */}
                                 <Link
                                     href="/upload-image"
-                                    className="py-1.5 px-5  lg:outline-1 lg:outline-black rounded-2xl lg:hover:bg-blue-600 lg:hover:outline-none border border-blue-600 text-white"
+                                    className="py-2 px-10 rounded-2xl hover:bg-blue-600/40 hover:outline-none border border-blue-600 text-white"
                                 >
                                     Subir
                                 </Link>
